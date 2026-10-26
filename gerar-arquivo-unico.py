@@ -3,7 +3,7 @@
 import base64, mimetypes, pathlib, re
 
 base = pathlib.Path(__file__).parent
-html = (base / "prime-estetica.html").read_text(encoding="utf-8")
+html = (base / "index.html").read_text(encoding="utf-8")
 
 def embutir(m):
     caminho = base / m.group(2)

@@ -1,8 +1,4 @@
 {
-  "cleanUrls": true,
-  "rewrites": [
-    { "source": "/", "destination": "/prime-estetica.html" }
-  ],
   "headers": [
     {
       "source": "/img/(.*)",
