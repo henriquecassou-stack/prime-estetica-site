@@ -9,7 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23343F2C'/%3E%3Cg transform='translate(10 18) scale(.8)' fill='none' stroke='%23C2A271' stroke-width='4' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M22 6h56l18 22-46 48L4 28z'/%3E%3Cpath d='M28 6c4 22 14 36 32 44C56 30 46 14 28 6z'/%3E%3Cpath d='M72 6c-4 22-14 36-32 44C44 30 54 14 72 6z'/%3E%3Cpath d='M4 28c22 0 40 14 46 48'/%3E%3Cpath d='M96 28c-22 0-40 14-46 48'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&family=Marcellus&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&family=Marcellus&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
 <style>
   /* ============ TOKENS ============ */
   :root {
@@ -368,8 +368,10 @@
   }
   .credit { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; color: #C9BEAA; transition: color .3s ease, opacity .3s ease; }
   .credit:hover { color: var(--white); }
-  .credit img { height: 84px; width: auto; opacity: .92; transition: opacity .3s ease; }
-  .credit:hover img { opacity: 1; }
+  .credit__logo { display: inline-flex; align-items: center; gap: 9px; }
+  .credit__logo svg { width: 30px; height: 30px; transition: transform .4s var(--ease); }
+  .credit:hover .credit__logo svg { transform: translateX(-3px); }
+  .credit__name { font: 700 1.1rem/1 "Space Grotesk", var(--sans); letter-spacing: .14em; color: var(--white); }
   @media (min-width: 760px) {
     .footer__grid { grid-template-columns: 1fr auto auto; column-gap: 56px; }
   }
@@ -613,10 +615,24 @@
     </div>
     <div class="footer__bottom">
       <span>© <span id="ano">2026</span> Prime Estética Avançada JB</span>
-      <span class="credit">
+      <a class="credit" href="https://www.codaautomacoes.com" target="_blank" rel="noopener">
         Desenvolvido por
-        <img src="img/coda-logo.png" alt="CODA Automatizações" width="349" height="357">
-      </span>
+        <span class="credit__logo">
+          <!-- Logo CODA (mesmo do site codaautomacoes.com) -->
+          <svg viewBox="0 0 240 240" aria-hidden="true">
+            <defs>
+              <linearGradient id="coda-g" x1="205" y1="40" x2="95" y2="205" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#2dd4f0"/>
+                <stop offset="52%" stop-color="#3d5cff"/>
+                <stop offset="100%" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+            <path d="M112 108 C124 116 124 132 112 140 C102 146 92 142 88 132 C84 122 90 112 100 108 C104 106 108 106 112 108Z" fill="#1c2340"/>
+            <path d="M188 46 L82 120 L188 194" stroke="url(#coda-g)" stroke-width="46" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <span class="credit__name">CODA</span>
+        </span>
+      </a>
     </div>
   </div>
 </footer>
