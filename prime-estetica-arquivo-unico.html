@@ -6,6 +6,7 @@
 <title>Prime Estética Avançada JB | Pinhais/PR</title>
 <meta name="description" content="Clínica de estética avançada em Pinhais/PR. Tratamentos faciais e corporais pensados para que você se sinta amada, valorizada e cuidada.">
 <meta name="theme-color" content="#F8F1EB">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23343F2C'/%3E%3Cg transform='translate(10 18) scale(.8)' fill='none' stroke='%23C2A271' stroke-width='4' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M22 6h56l18 22-46 48L4 28z'/%3E%3Cpath d='M28 6c4 22 14 36 32 44C56 30 46 14 28 6z'/%3E%3Cpath d='M72 6c-4 22-14 36-32 44C44 30 54 14 72 6z'/%3E%3Cpath d='M4 28c22 0 40 14 46 48'/%3E%3Cpath d='M96 28c-22 0-40 14-46 48'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&family=Marcellus&display=swap" rel="stylesheet">
@@ -36,6 +37,10 @@
 
   *, *::before, *::after { box-sizing: border-box; }
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  /* Lenis (rolagem suave) */
+  html.lenis, html.lenis body { height: auto; }
+  html.lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-stopped { overflow: hidden; }
   body {
     margin: 0;
     background: var(--bg);
@@ -642,6 +647,7 @@
   </defs>
 </svg>
 
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
 <script>
   /* =========================================================
      TRATAMENTOS: edite esta lista para trocar os itens.
@@ -696,6 +702,21 @@
     revelar.forEach(function (el) { io.observe(el); });
   } else {
     revelar.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  // Rolagem suave e mais lenta (mouse/trackpad). No celular fica a rolagem nativa.
+  if (window.Lenis && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const lenis = new Lenis({ lerp: 0.07, wheelMultiplier: 0.75 });
+    window.lenis = lenis;
+    requestAnimationFrame(function raf(t) { lenis.raf(t); requestAnimationFrame(raf); });
+
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        const id = link.getAttribute('href');
+        e.preventDefault();
+        lenis.scrollTo(id === '#' ? 0 : id, { offset: -20, duration: 1.6 });
+      });
+    });
   }
 </script>
 </body>
